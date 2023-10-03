@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      /* display: flex; */
+      /* justify-content: center;
+      align-items: center; */
+
+      /* flex-direction: column; */
+      /* gap: 10px; */
+      /* padding: 10px; */
+      background-color: bisque;
+      
+    }
+
+    #snackbar {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
+    }
+
+    #snackbar.show {
+      visibility: visible;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @-webkit-keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+
+    #main {
+       
+      width: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 200px;
+
+    }
+
+    .seat:nth-of-type(2) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(7) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(12) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(17) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(22) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(27) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(32) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(37) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(42) {
+      margin-right: 12px;
+    }
+
+    .seat:nth-of-type(47) {
+      margin-right: 12px;
+    }
+
+    #con {
+      display: none;
+      border: 1px solid;
+      border-radius: 5px;
+      padding: 7px;
+      
+
+
+
+    }
+
+    #con1 {
+      display: none;
+      border: 1px solid;
+      border-radius: 5px;
+      padding: 7px;
+
+    }
+
+    /* button:hover{
+      cursor: pointer;
+      color: aqua;
+    }
+    button:active , :focus {
+      background-color: chartreuse;
+      color: beige;
+    } */
+    .seat.selected {
+      background-color:crimson;
+    }
+
+    .seat {
+      background-color: rgb(55, 206, 55);
+      height: 30px;
+      width: 30px;
+    }
+
+
+    .seat1:nth-of-type(2) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(7) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(12) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(17) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(22) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(27) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(32) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(37) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(42) {
+      margin-right: 12px;
+    }
+
+    .seat1:nth-of-type(47) {
+      margin-right: 12px;
+    }
+
+
+
+    .seat1.selected {
+      background-color: crimson;
+    }
+
+    .seat1 {
+      background-color:  rgb(55, 206, 55);
+      height: 30px;
+      width: 30px;
+
+    }
+
+    #book {
+      display: none;
+      color:black;
+      margin-left: 240px;
+      background-color: lightgray; 
+      font-weight: bold;
+      
+    }
+
+    
+    #yu {
+      border: bisque;
+      
+      height: 1200px;
+      margin-top: 60px;
+      margin-left: 460px;
+      background-color: bisque;
+      border-radius: 15px; 
+      
+    }
+     /* #me input {
+      width: 300px;
+      height: 40px;
+      border: 1px solid;
+      border-radius: 15px;
+    }
+
+    #me {
+      padding: 20px;
+      margin-left: 95px;
+      margin-top: 2px;
+    } */
+
+    #hut {
+      margin-left: 65px;
+      color: black;
+      
+      
+
+    }
+    .type{
+      margin-left: 115px;
+    }
+
+    select {
+      border: 1px solid;
+      border-radius: 10px;
+      font-size: 20px;
+      color: black;
+      border-color: black;
+    }
+    #ac{
+      margin-left:150px ;
+      font-size: 20px; 
+      color:black;
+     }
+    .inputBox {
+      position: relative;
+      width: 350px;
+
+    }
+
+    .inputBox input {
+      width: 100%;
+      padding: 10px;
+      border: black 3px solid;
+      background: bisque;
+      border-radius: 5px;
+      outline: none;
+      color: black;
+      font-size: 1em;
+      transition: 0.5s;
+
+    }
+
+    .inputBox span {
+      /* position: absolute; */
+      left: 0;
+      padding: 1px;
+      pointer-events: none;
+      font-size: 10px;
+      color: black;
+      text-transform: uppercase;
+    }
+
+    .inputBox input:valid~span,
+    .inputBox input:focus~span {
+      color: black;
+      transform: translateX(10px) translateY(-7px);
+      font-size: 0.65em;
+      padding: 0 10px;
+      background: bisque;
+      border-left: 2px solid black;
+      border-right: 2px solid black;
+      letter-spacing: 0.2em;
+    }
+
+    .inputBox:nth-child(2) input:valid~span,
+    .inputBox:nth-child(2) input:focus~span {
+      background: black;
+      color: bisque;
+      border-radius: 2px;
+    }
+
+    .inputBox input:valid,
+    .inputBox input:focus {
+      border: 3px solid black;
+    }
+
+    .slideshow-container {
+  
+  max-width:1000px;
+
+  height: 550px;
+  margin-top: 0px;
+  margin-left: 230px;
+  overflow: hidden;
+}
+
+.slide img  {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+
+.fade {
+  animation: fade 3s ease-in-out infinite;
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 1;
+  }
+}
+#amount1{
+  margin-left: 170px;
+  font-size: larger;
+  color: black;
+
+}
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <div class="slideshow-container">
+    <div class="slide fade">
+      <img src="C:\html\dis.png" alt="Slide 1">
+    </div>
+    <div class="slide fade">
+      <img src="C:\html\chennai-vector-doodle_zJWWftLu_SB_PM.jpg" alt="Slide 2">
+    </div>
+    <div class="slide fade">
+      <img src="C:\html\Untitled-2.png" alt="Slide 3">
+    </div>
+    <div class="slide fade">
+      <img src="C:\html\Untitled-1.png" alt="Slide 3">
+    </div>
+  </div>
+
+
+
+  <div id="yu">
+    <div class="inputBox type">
+      <input type="text" id="text1" required="required"><br><br>
+      <span>First Name</span>
+    </div>
+    <div class="inputBox type">
+      <input type="text" id="text2" required="required"><br><br>
+      <span>Last Name</span>
+    </div>
+    <div class="inputBox type">
+      <input type="text" id="text3" required="required"><br><br>
+      <span>Email</span>
+    </div>
+    <div class="inputBox type">
+      <input type="date" id="text4"><br><br>
+    </div>
+
+
+    <div id="hut">
+      <label for="sel" style="font-size: 20px;">FROM </label>
+      <select id="sel" style="width: 170px; border: 2px solid;">
+        <option value="From"></option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Pondicherry">Pondicherry</option>
+      </select>
+
+      <label for="sel1" style="font-size: 20px;">TO </label>
+      <select name="" id="sel1" style="width: 170px; border: 2px solid ;" >
+        <option value="To"></option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Coimbatore">Coimbatote</option>
+        <option value="Pondicherry">Pondicherry</option>
+      </select><br><br>
+    </div>
+    <div id="ac">
+      <input type="radio" name="choice" id="c1" onclick="sample1()">AC BUS
+      <input type="radio" name="choice" id="c2" onclick="sample2()">NON-AC BUS
+    </div><br><br>
+
+
+    <div id="main">
+      <div id="con">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+        <input class="seat" type="button">
+      </div>
+
+
+      <div id="con1">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+        <input class="seat1" type="button">
+
+      </div>
+    </div>
+
+    <div id="snackbar">Your booking confirmed...</div>
+    <p id="amount1"></p>
+    <button id="book" onclick="myFunction()" >BOOK TICKETS</button>
+  </div>
+
+
+  <script>
+      let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let slides = document.getElementsByClassName("slide");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 3000); // Change slide every 3 seconds
+}
+
+
+
+    function sample1() {
+      var btn = document.getElementById("con");
+      var btn1 = document.getElementById("con1");
+      var btn2 = document.getElementById("book");
+      if (document.getElementById('c1').checked) {
+        btn.style.display = 'block';
+        btn1.style.display = 'none';
+        btn2.style.display = 'block';
+
+      } else {
+        btn.style.display = 'none';
+      }
+      selectSeats();
+
+
+
+    }
+    function sample2() {
+      var btn = document.getElementById("con1");
+      var btn1 = document.getElementById("con");
+      var btn2 = document.getElementById("book");
+      if (document.getElementById('c2').checked) {
+        btn.style.display = 'block';
+        btn1.style.display = 'none';
+        btn2.style.display = 'block';
+
+      } else {
+        btn.style.display = 'none';
+      }
+      selectSeats1();
+
+
+    }
+    function sample3() {
+      var a = document.getElementsByClassName("seat");
+      var seats = 0;
+      for (i = 0; i < a.length; i++) {
+        if (a[i].classList.contains("selected")) {
+          seats++;
+        }
+      }
+
+
+      var amount = document.getElementById("amount1");
+      amount.style.fontSize="xx larger";
+      amount.style.color="black";
+      amount.style.fontWeight="bold";
+
+      if (seats > 0) {
+        amount.innerHTML = "The amount of your ticket is &#8377;" + (seats * 450);
+      } else {
+        amount.innerHTML = "You did not select any ticket";
+      }
+      
+      
+
+    }
+    function selectSeats(seat) {
+      if (seat.classList.contains("selected")) {
+        seat.classList.remove("selected");
+      } else {
+        seat.classList.add("selected");
+      }
+      sample3();
+    }
+    var button = document.getElementsByClassName("seat");
+    for (let i = 0; i < button.length; i++) {
+      button[i].addEventListener("click", function () {
+        selectSeats(this);
+      });
+    }
+
+
+    function sample4() {
+      var a = document.getElementsByClassName("seat1");
+      var seats = 0;
+      for (i = 0; i < a.length; i++) {
+        if (a[i].classList.contains("selected")) {
+          seats++;
+        }
+      }
+
+
+      var amount = document.getElementById("amount1");
+      if (seats > 0) {
+        amount.innerHTML = "The amount of your ticket is &#8377;" + (seats * 200);
+      } else {
+        amount.innerHTML = "You did not select any ticket";
+      }
+      
+
+    }
+    function selectSeats1(seat1) {
+      if (seat1.classList.contains("selected")) {
+        seat1.classList.remove("selected");
+      } else {
+        seat1.classList.add("selected");
+      }
+      sample4();
+    }
+    var button = document.getElementsByClassName("seat1");
+    for (let i = 0; i < button.length; i++) {
+      button[i].addEventListener("click", function () {
+        selectSeats1(this);
+      });
+    }
+
+    // function main(){
+    //   var text1 = document.getElementById("text1");
+    //   var text2 = document.getElementById("text2");
+    //   var text3 = document.getElementById("text3");
+    //   var text4 = document.getElementById("text4");
+    //   var text4 = document.getElementById("sel1");
+
+    // }
+    function myFunction() {
+      // Get the snackbar DIV
+      var x = document.getElementById("snackbar");
+
+      // Add the "show" class to DIV
+      x.className = "show";
+
+      // After 3 seconds, remove the show class from DIV
+      setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+</body>
+
+</html>
